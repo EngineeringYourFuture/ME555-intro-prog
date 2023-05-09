@@ -1,0 +1,42 @@
+Grading at 04/26/2023:20:24:04.593634
+For commit ID 735397eca3285bbc9bd3296501466c21b3f474a6
+Grading at Wed Apr 26 04:23:52 PM EDT 2023
+Attempting to compile
+rm -r *.o *~ find_quals
+g++ -std=c++11 -pedantic -Wall -Werror -ggdb3 -c find.cpp
+g++ -std=c++11 -pedantic -Wall -Werror -ggdb3 -c profile.cpp
+g++ -o find_quals find.o profile.o
++-----------------------------------------------------------------------+
+Test case 1
+Wrong # arguments
+Your program successfully indicated a failure case
++-----------------------------------------------------------------------+
+Test case 2
+Wrong # arguments
+Your program successfully indicated a failure case
++-----------------------------------------------------------------------+
+Test case 3
+Error opening file
+Your program successfully indicated a failure case
++-----------------------------------------------------------------------+
+Test case 4
+Error opening file
+Your program successfully indicated a failure case
++-----------------------------------------------------------------------+
+Test case 5
+Your file matched the expected output
+  - Valgrind was clean (no errors, no memory leaks)
++-----------------------------------------------------------------------+
+Test case 6
+Your file matched the expected output
+  - Valgrind was clean (no errors, no memory leaks)
++-----------------------------------------------------------------------+
+Test case 7
+Your file matched the expected output
+  - Valgrind was clean (no errors, no memory leaks)
++-----------------------------------------------------------------------+
+Test case 8
+Your file matched the expected output
+  - Valgrind was clean (no errors, no memory leaks)
+
+Overall Grade: A

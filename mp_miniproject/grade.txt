@@ -1,0 +1,37 @@
+Grading at 05/05/2023:21:22:17.328314
+For commit ID 12019f368d223a1d753c91972d3e7f68ae26231e
+Grading at Fri May  5 05:22:16 PM EDT 2023
+=========================================================================
+Functionality
+
+Step 1                                                  [20/20]
+Step 2                                                  [25/30]
+Step 3                                                  [30/30]
+Step 4                                                  [15/15]
+
+Steps 2–4 should also print intermediate paths. Otherwise, great 
+functionality!
+
+=========================================================================
+Code quality
+
+Abstration:    Excellent
+Naming:        Excellent
+Formatting:    Excellent
+OOP:           Excellent
+Documentation: Excellent
+Quality total                                            [10/10]
+
+Great OOP, and mostly really nice code. A few functions get a little long, like 
+parseGridMap.
+
+=========================================================================
+Testing
+
+Testing total                                            [10/10]
+
+Great job testing!
+
+=========================================================================
+
+Overall Grade: 110

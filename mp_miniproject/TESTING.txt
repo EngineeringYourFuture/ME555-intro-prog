@@ -1,0 +1,197 @@
+path_planning
+(1) Run ./path-step1 grid_map_a.txt
+    You will see that it prints:
+(0,0) (0.5,0) (1,0) (1.5,0) (2,0) (2.5,0) (0,0.4) (0.5,0.4) (1,0.4) (1.5,0.4) (2,0.4) (2.5,0.4) (0,0.8) (0.5,0.8) (1,0.8) (1.5,0.8) (2,0.8) (2.5,0.8) (0,1.2) (0.5,1.2) (1,1.2) (1.5,1.2) (2,1.2) (2.5,1.2)
+0: 1,0.5 6,0.4 7,0.640312
+1: 0,0.5 2,0.5 6,0.640312 7,0.4 8,0.640312
+2: 1,0.5 3,0.5 7,0.640312 8,0.4 9,0.640312
+3: 2,0.5 4,0.5 8,0.640312 9,0.4 10,0.640312
+4: 3,0.5 5,0.5 9,0.640312 10,0.4 11,0.640312
+5: 4,0.5 10,0.640312 11,0.4
+6: 0,0.4 1,0.640312 7,0.5 12,0.4 13,0.640312
+7: 0,0.640312 1,0.4 2,0.640312 6,0.5 8,0.5 12,0.640312 13,0.4 14,0.640312
+8: 1,0.640312 2,0.4 3,0.640312 7,0.5 9,0.5 13,0.640312 14,0.4 15,0.640312
+9: 2,0.640312 3,0.4 4,0.640312 8,0.5 10,0.5 14,0.640312 15,0.4 16,0.640312
+10: 3,0.640312 4,0.4 5,0.640312 9,0.5 11,0.5 15,0.640312 16,0.4 17,0.640312
+11: 4,0.640312 5,0.4 10,0.5 16,0.640312 17,0.4
+12: 6,0.4 7,0.640312 13,0.5 18,0.4 19,0.640312
+13: 6,0.640312 7,0.4 8,0.640312 12,0.5 14,0.5 18,0.640312 19,0.4 20,0.640312
+14: 7,0.640312 8,0.4 9,0.640312 13,0.5 15,0.5 19,0.640312 20,0.4 21,0.640312
+15: 8,0.640312 9,0.4 10,0.640312 14,0.5 16,0.5 20,0.640312 21,0.4 22,0.640312
+16: 9,0.640312 10,0.4 11,0.640312 15,0.5 17,0.5 21,0.640312 22,0.4 23,0.640312
+17: 10,0.640312 11,0.4 16,0.5 22,0.640312 23,0.4
+18: 12,0.4 13,0.640312 19,0.5
+19: 12,0.640312 13,0.4 14,0.640312 18,0.5 20,0.5
+20: 13,0.640312 14,0.4 15,0.640312 19,0.5 21,0.5
+21: 14,0.640312 15,0.4 16,0.640312 20,0.5 22,0.5
+22: 15,0.640312 16,0.4 17,0.640312 21,0.5 23,0.5
+23: 16,0.640312 17,0.4 22,0.5
+which is correct because it matches the correct output.
+(2) Run ./path-step1 grid_map_b.txt
+    You will see that it prints:
+(0,0) (0.5,0) (1,0) (0,0.5) (0.5,0.5) (1,0.5)
+0: 1,0.5 3,0.5 4,0.707107
+1: 0,0.5 2,0.5 3,0.707107 4,0.5 5,0.707107
+2: 1,0.5 4,0.707107 5,0.5
+3: 0,0.5 1,0.707107 4,0.5
+4: 0,0.707107 1,0.5 2,0.707107 3,0.5 5,0.5
+5: 1,0.707107 2,0.5 4,0.5
+    which is correct because it mathes the correct output.
+(3) Run ./path-step1 grid_map0.txt
+    You will see that it prints:
+    Grid map file is empty.
+    which is correct because grid_map0.txt is empty.
+(4) Run ./path-step1 grid_map1.txt
+    You will see that it prints:
+    Invalid section in the grid map file
+    which is correct because grid_map1.txt does not contain $nodes or $edges, it only contain a charactor a.
+(5) Run ./path-step1 grid_map2.txt
+    You will see that it prints:
+    Grid map file is missing one or both sections: $nodes and $edges.	
+    which is correct because grid_map2.txt does not contain $edges, it only contain $nodes.
+(6) Run ./path-step1 grid_map3.txt
+    You will see that it prints:
+
+    which is correct because grid_map3.txt only contains $nodes and $edges but no node, therefore it print nothing.
+(7) Run ./path-step1 grid_map4.txt
+    You will see that it prints:
+    The type of the node is incorrect: 0 0
+    which is correct because grid_map4.txt contains non-numeric node in $edges section.    
+(8) Run ./path-step1 grid_map5.txt
+    You will see that it prints:
+    Grid map file is missing one or both sections: $nodes and $edges.
+    which is correct because grid_map5.txt contains $nodes section with several nodes.
+(9) Run ./path-step1 grid_map6.txt
+    You will see that it prints:
+    Invalid input line: a 1.0 0.0
+    which is correct because grid_map6.txt contains non-numeric node ID in $nodes section.    
+(10) Run ./path-step1 grid_map7.txt
+    You will see that it prints:
+    The type of the node is incorrect: 0 0
+    which is correct because grid_map7.txt contains non-numeric node ID in $edges section.    
+(11) Run ./path-step1 grid_map8.txt
+    You will see that it prints:
+    Invalid input line: 0 1.a 0.0
+    which is correct because grid_map8.txt contains non-numeric coordinate in $nodes section.
+(12) Run ./path-step1 grid_map9.txt
+    You will see that it prints:
+    Invalid node IDs in edge: 0 5
+    which is correct because grid_map9.txt contains node in $edge section that does not include in $nodes section.
+(13) Run ./path-step1 grid_map10.txt
+    You will see that it prints:
+    The node ID should be non-negative in $edges: 0 -1
+    which is correct because grid_map10.txt contains negative node ID in $edge section. 
+(14) Run ./path-step1 grid_map11.txt
+    You will see that it prints:
+    The type of the node is incorrect: 0 0
+    which is correct because grid_map11.txt contains only 1 node ID on 1 line in $edge section. 
+(15) Run ./path-step1 grid_map12.txt
+    You will see that it prints:
+    The type of the node is incorrect: 0 0
+    which is correct because grid_map12.txt contains only x or y coordinate on 1 line in $nodes section. 
+(16) Run ./path-step1 
+    You will see that it prints:
+    Wrong # arguments
+    which is correct because there is no command line argument.
+(17) Run ./path-step1 non.txt
+    You will see that it prints:
+    Can not open grid map file:non.txt
+    which is correct because non.txt does not exist.
+(18) Run ./path-step2
+    You will see that it prints:
+    Wrong # arguments
+    which is correct because no grid map file, start node and goal node arguments.
+(19) Run ./path-step2 grid_map_a.txt 0 23
+    You will see that it prints:
+    0 1 2 9 16 23 : 2.92094
+    which is correct because it returns the shortest path with minimum node ID.
+(20) Run ./path-step2 grid_map_a.txt 0 13
+    You will see that it prints:
+    0 6 13 : 1.04031
+    which is correct because it returns the shortest path with minimum node ID.
+(21) Run ./path-step2 grid_map_b.txt 0 13
+    You will see that it prints:
+    Invalid start node or goal node
+    which is correct because 13 exceed the maximum node ID in grid_map_b.txt.
+(22) Run ./path-step2 grid_map_b.txt 0.5 13
+    You will see that it prints:
+    Invalid input for node ID: 0.5
+    which is correct because the node ID is 0.5 which is invalid.
+(23) Run ./path-step2 grid_map_b.txt 0 b
+    You will see that it prints:
+    Invalid input for node ID: b
+    which is correct because the node ID is b which is invalid.
+(24) Run ./path-step3 grid_map_a.txt obstacles.txt 0 23
+    You will see that it prints:
+    0 6 13 20 21 22 23 : 3.18062
+    which is correct because it returns the correct path and cost.
+(25) Run ./path-step3 grid_map_a.txt obstacles0.txt 0 23
+    You will see that it prints:
+    Invalid format for the first line: 2 14 8
+    which is correct because obstacles0.txt does not have header.
+(26) Run ./path-step3 grid_map_a.txt obstacles1.txt 0 23
+    You will see that it prints:
+    obstacle file is empty.
+    which is correct because obstacles1.txt is empty.        
+(27) Run ./path-step3 grid_map_a.txt obstacles2.txt 0 23
+    You will see that it prints:
+    0 1 2 9 16 23 : 2.92094
+    which is correct because obstacles2.txt does not have obstacle, it returns original path.
+(28) Run ./path-step3 grid_map_a.txt obstacles3.txt 0 23
+    You will see that it prints:
+    Invalid input line: a 14 8
+    which is correct because obstacles3.txt has invalid node ID.
+(29) Run ./path-step3 grid_map_a.txt obstacles4.txt 0 23
+    You will see that it prints:
+    Invalid input line: 2 14 a
+    which is correct because obstacles4.txt has invalid node ID.
+(30) Run ./path-step3 grid_map_a.txt obstacles5.txt 0 23
+    You will see that it prints:
+    The node number is incorrect on line: 2
+    which is correct because obstacles5.txt only has one node ID on the line.
+(31) Run ./path-step3 grid_map_a.txt 
+    You will see that it prints:
+    Wrong # arguments
+    which is correct because the number of command line arguments is incorrect.
+(32) Run ./path-step3 grid_map_a.txt a.txt 0 23
+    You will see that it prints:
+    Cannot open obstacle file: a.txt
+    which is correct because the a.txt file does not exist.
+(33) Run ./path-step3 grid_map_a.txt obstacle.txt a 23
+    You will see that it prints:
+    Invalid input for node ID: a
+    which is correct because a is not a valid node ID.
+(34) Run ./path-step3 grid_map_a.txt obstacle.txt 0 25
+    You will see that it prints:
+    Invalid start node or goal node
+    which is correct because 25 does not exist in the graph.
+(35) Run ./path-step4 grid_map_a.txt obstacle.txt 0 19 -a
+    You will see that it prints:
+    0 6 12 19 : 1.44031
+    which is correct because the returned path is generated by A* algorithm
+(36) Run ./path-step4 grid_map_a.txt obstacle.txt 0 19 
+    You will see that it prints:
+    0 6 13 19 : 1.44031
+    which is correct because the returned path is generated by Dijkstra's algorithm
+(37) Run ./path-step4 grid_map_a.txt obstacle.txt 0 14 -a
+    You will see that it prints:
+    No path exists.
+    which is correct because node 14 is obstacle node in obstacle.txt.
+(38) Run ./path-step4 grid_map_a.txt obstacle.txt 0 19 -b
+    You will see that it prints:
+    The format of the option is incorrect: -b
+    which is correct because -b is not a correct option.
+(39) Run ./path-step4 grid_map_a.txt obstacle.txt 0 25 -a
+    You will see that it prints:
+    Invalid node ID: 0 25
+    which is correct because 25 exceeds the maximum node ID.
+    
+    
+
+    
+    
+    
+    
+    
+
+    
