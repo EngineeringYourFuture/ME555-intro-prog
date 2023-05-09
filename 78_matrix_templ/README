@@ -1,0 +1,61 @@
+For this problem, you will be rewriting the IntMatrix class, making use of
+std::vector, now that you know how to use templates. You should make frequent
+use of the documentation for this class template:
+https://cplusplus.com/reference/vector/vector/
+For more on containers in the C++ standard template library:
+https://cplusplus.com/reference/stl/
+
+For all parts of the class you are writing, carefully consider whether the
+desired functionality can be simply achieved with functionality in the
+std::vector class template. You should be able to write most of this class with
+much less code than for the previous int_matrix assignment. Feel free to check
+your code with an instructor to see if you are fully utilizing std::vector.  
+
+I have provided IntMatrix.h missing the private field, as well as a skeleton of
+IntMatrix.cpp (with empty functions).
+
+You will write the following members of IntMatrix:
+  - A private field representing a matrix of integers. Think about how to
+    represent and declare this data type.
+  - IntMatrix();
+    o A default constructor: it should initialize the matrix to have 0
+      rows and 0 columns.
+  - IntMatrix(size_t r, size_t c);
+    o A constructor that takes the number of rows and columns. It
+      should initialize the matrix to have the specified number of
+      rows and columns.
+  - IntMatrix(const IntMatrix & rhs);
+    o A copy constructor, which makes a deep copy.
+  - ~IntMatrix();
+    o A destructor, which frees any memory the Matrix has allocated.
+  - IntMatrix & operator=(const IntMatrix & rhs);
+    o An assignment operator, which makes a deep copy
+  - size_t getRows() const;
+    o Returns the number of rows
+  - size_t getColumns() const;
+    o Returns the number of columns
+  - IntArray & operator[](size_t index);
+    const IntArray & operator[](size_t index) const;
+    o Uses assert() to check that index is valid
+    o Returns a reference to the requested row.
+  - bool operator==(const IntMatrix & rhs) const;
+    o Compares two matrices for equality. The matrices are equal if
+      they have the same number of rows, the same number of columns,
+      and each element is the same as the corresponding element in the
+      other matrix. 
+  - IntMatrix operator+(const IntMatrix & rhs) const;
+    o assert()s that this and rhs have the same dimensions.
+    o Returns matrix (also the same dimensions as this and rhs) whose
+      elements are the sum of the corresponding elements of this
+      matrix and rhs (does matrix addition).
+
+Additionally, you will write an overloading of the << operator for
+std::ostream & and const IntMatrix &:
+  std::ostream & operator<<(std::ostream & s, const IntMatrix & rhs);
+This should print (to s) a "[ ", followed by each row of the matrix, formatted
+the same as an IntArray in a previous assignment (e.g. {element0, element1,
+... elementN-1}.) These rows should be separated by ",\n". After the last row,
+you should print " ]" and return s.
+
+Compile, test, and valgrind your code. We have provided the output of
+the test program which the Makefile builds.

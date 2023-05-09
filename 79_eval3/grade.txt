@@ -1,0 +1,123 @@
+Grading at 04/21/2023:00:27:50.638199
+For commit ID 9e7467736e3708116e9edae57eba8c30d6619c5d
+Grading at Thu Apr 20 08:27:29 PM EDT 2023
+
+=========================================================================
+Step 1
+
+Compiling your MyOde with our test main
++-----------------------------------------------------------------------+
+Test case 1.1
+Your file matched the expected output
+                                                         [10/10]
++-----------------------------------------------------------------------+
+Test case 1.2
+Your file matched the expected output
+                                                         [5/5]
++-----------------------------------------------------------------------+
+Test case 1.3
+Your file matched the expected output
+                                                         [5/5]
++-----------------------------------------------------------------------+
+Test case 1.4
+Your file matched the expected output
+                                                         [5/5]
++-----------------------------------------------------------------------+
+Test case 1.5
+Your file matched the expected output
+                                                         [5/5]
+
+Step 1 total                                             [30/30]
+
+=========================================================================
+Step 2
+
+Compiling your MyOde and EulerSimulation with our test main
++-----------------------------------------------------------------------+
+Test case 2.1
+Your file matched the expected output
+                                                         [10/10]
++-----------------------------------------------------------------------+
+Test case 2.2
+Your file matched the expected output
+                                                         [5/5]
++-----------------------------------------------------------------------+
+Test case 2.3
+Your file matched the expected output
+                                                         [5/5]
++-----------------------------------------------------------------------+
+Test case 2.4
+Your file matched the expected output
+                                                         [5/5]
++-----------------------------------------------------------------------+
+Test case 2.5
+Your file matched the expected output
+                                                         [5/5]
+
+Step 2 total                                             [30/30]
+
+=========================================================================
+Step 3
+
+Checking that num_sim compiles
+rm -f *~ *.o test-step1 test-step2 num_sim
+g++ -Werror -Wall -pedantic -std=gnu++98 -ggdb3 -c num_sim.cpp
+g++ -Werror -Wall -pedantic -std=gnu++98 -ggdb3 -c myode.cpp
+g++ -Werror -Wall -pedantic -std=gnu++98 -ggdb3 -c euler.cpp
+g++ -o num_sim num_sim.o myode.o euler.o
++-----------------------------------------------------------------------+
+Test case 3.1
+Your program successfully indicated a failure case
+                                                         [2/2]
++-----------------------------------------------------------------------+
+Test case 3.2
+Your program successfully indicated a failure case
+                                                         [2/2]
++-----------------------------------------------------------------------+
+Test case 3.3
+Your program successfully indicated a failure case
+                                                         [2/2]
++-----------------------------------------------------------------------+
+Test case 3.4
+Your program successfully indicated a failure case
+                                                         [2/2]
++-----------------------------------------------------------------------+
+Test case 3.5
+Your file matched the expected output
+                                                         [10/10]
++-----------------------------------------------------------------------+
+Test case 3.6
+Your file matched the expected output
+                                                         [3/3]
++-----------------------------------------------------------------------+
+Test case 3.7
+Your file matched the expected output
+                                                         [3/3]
++-----------------------------------------------------------------------+
+Test case 3.8
+Your file matched the expected output
+                                                         [3/3]
++-----------------------------------------------------------------------+
+Test case 3.9
+Your file matched the expected output
+                                                         [3/3]
+
+Step 3 total                                             [30/30]
+
+=========================================================================
+Code quality
+
+Abstration:    Excellent
+Naming:        Excellent
+Formatting:    Excellent
+OOP:           Excellent
+Documentation: Good
+Comments from your grader:
+I recommend adding more comments in the bodies of functions with many lines. 
+Otherwise, the code looks great and is well abstracted! Prefer not to add 
+executables to Git, since these can be made from the source code. 
+Quality total                                            [9.7/10]
+
+=========================================================================
+
+Overall Grade: 100

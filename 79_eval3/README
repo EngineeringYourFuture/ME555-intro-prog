@@ -1,0 +1,331 @@
+For this *evaluative* assignment, you will write a numerical simulation that
+uses Euler's method. There are two main classes, MyOde, representing an
+ordinary differential equation (ODE), and EulerSimulation, which will do the
+numerical simulation. 
+
+The first part of the README describes the concepts, and the individual step
+instructions describe the technical specifications for the code. 
+
+Here is the conceptual idea of how we will represent the ODE. Consider the
+equation of motion for a mass, attached to a spring and a viscous damper and
+excited by a force of the form a*sin(om*t). As every mechanical engineer likely
+knows,* this system has ODE 
+
+m*xddot + c*xdot + k*x = a*sin(om*t)
+
+where
+x: position
+xdot: velocity (first time derivative of position)
+xddot: acceleration (second time derivative of position)
+m: mass
+c: damping coefficient
+k: spring constant
+a: amplitude of input force
+om: frequency of input force
+
+*If not, no worries at all. Feel free to derive this with the instructor if you
+ have interest. 
+
+It is often convenient to represent a higher-order ODE as a system of
+first-order ODEs. If we choose state variables y0=x and y1=xdot, then we can
+write the two equations: 
+
+y0dot = y1
+y1dot = (a*sin(om*t) - c*y1 - k*y0)/m
+
+Together, these equations represent the ODE. For inputs t, y (vector length 2),
+the output would be the vector of time derivatives ydot={xdot,xddot}. 
+
+Here is the conceptual idea of Euler's method. If we have an analytical
+expression for ydot(t, y), the first derivative of a function y(t) (which may
+be a vector), we can numerically integrate to find y(t) by starting at an
+initial point and stepping by increments of t, a process called "time
+marching." 
+
+Once step of Euler's method is depicted
+
+               (t_i, y_i)
+     	      	   /|
+		  / |
+        	 /  |
+                /   |
+             m /    | dy
+              /     |
+             /      | 
+            /       |
+           /________|
+ (t_i-1,y_i-1)  dt  
+
+To find y_i from y_i-1, we step by dy: y_i = y_i-1 + dy, where dy is found from
+the slope dy = m*dt, so y_i = y_i-1 + m*dt. 
+
+The slope is the derivative ydot(t, y), so this could be written
+
+y_i = y_i-1 + ydot_i-1*dt
+
+where ydot_i-1 is the derivative at t_i-1 and y_i-1. For example, if we use the
+ODE dy/dt = y: 
+
+ydot(t, y) = y
+
+each step is calculated
+
+ydot_i-1 = y_i-1
+t_i = t_i-1 + dt
+y_i = y_i-1 + ydot_i-1*dt
+
+For initial values t_0 = 0 and y_0 = 1 and time step dt = 0.1, the first few
+points are calculated: 
+
+t_0 = 0
+y_0 = 1
+
+ydot_0 = y_0 = 1
+t_1 = t_0 + dt = 0.1
+y_1 = y_0 + ydot_0*dt = 1 + 1*0.1 = 1.1
+
+ydot_1 = y_1 = 1.1
+t_2 = t_1 + dt = 0.2
+y_2 = y_1 + ydot_1*dt = 1.1 + 1.1*0.1 = 1.21
+
+If y is a vector, as in our ODE for a spring-mass-damper, one step of Euler's
+method is calculated 
+
+compute ODE at previous t and y:
+y0dot_i-1 = y1_i-1
+y1dot_i-1 = (a*sin(om*t_i-1) - c*y1_i-1 - k*y0_i-1)/m
+
+compute i step for t and y:
+t_i = t_i-1 + dt
+y0_i = y0_i-1 + y0dot_i-1*dt
+y1_i = y1_i-1 + y1dot_i-1*dt
+
+or in terms of the more physically intuitive x and xdot:
+x_i = x_i-1 + xdot_i-1*dt
+xdot_i = xdot_i-1 + xddot_i-1*dt
+
+Note that this method has global truncation error proportional to dt, while
+some other methods are more exact, such as Runge-Kutta (RK4), which has global
+error proportional to dt^4. Feel free to read more here:
+https://en.wikipedia.org/wiki/Euler_method 
+
+Step 1
+======================================================================
+
+Write a MyOde class, which represents the ODE for a mass-spring-damper, in
+files myode.h and myode.cpp. 
+
+The MyOde class should have the following member functions:
+  - A constructor that takes a vector of doubles representing the parameters to
+    the ODE (by reference to const). The vector of parameters should have
+    length 5, and the constructor should initialize the class's private
+    members. You may decide what private member(s) you would like. The
+    parameters to the constructor are in this order: m,c,k,a,om, where
+    m: mass
+    c: damping coefficient
+    k: spring constant
+    a: amplitude of input force
+    om: frequency of input force
+  - A function operator() that takes parameters: a double representing a time
+    t, and a reference to a const vector of doubles representing the values of
+    the state variables at that time. This function returns a vector of doubles
+    representing the derivatives of the state variables. In other words, this
+    member function does the work of computing the ODE.  
+  - getOrder(), which returns an unsigned, the order of the ODE.
+
+In addition, you should overload the stream insertion operator to represent the
+ODE as a string, such as 
+
+1*xddot + 0.1*xdot + 5*x = 2*sin(6*t)
+
+To test this class, write a program "test-step1" which creates a MyOde and
+calls its function operator and uses stream insertion. 
+
+For example, if the input parameters were {1,0.1,5,2,6}, and the inputs to
+operator() were t=0 and xvec={0.5,0}, the output would be {0,-2.5}. 
+
+I recommend abstracting out the code to do one test and create several test
+cases. Initializing a vector from an array can be a bit of a pain since we are
+not using C++11 features. Note the range constructor
+(https://cplusplus.com/reference/vector/vector/vector/) can be used with an
+array as well, such as: 
+
+  double p[] = {1,0.1,5,2,6};
+  MyOde ode(std::vector<double>(p, p + 5));
+
+If you name your file as we did "test-step1.cpp", you can use the provided
+Makefile and comment out programs you don't want to make, like  
+PROGS=test-step1 #test-step2 num_sim
+You may but do not need to modify the provided Makefile.
+
+When you are satisfied with your testing, add/commit/push and grade, and the
+pregrader will compare the output of your test-step1 using your MyOde and our
+implementation of MyOde. 
+
+Step 2
+======================================================================
+
+Write the class EulerSimulation, which will do a numerical simulation using
+Euler's Method, in euler.h and euler.cpp. 
+
+Conceptually, this class implements an Euler's method simulation where an
+EulerSimulation has an ODE (contained in the MyOde class), and inputs: 
+  - time span (start time and end time)
+  - initial conditions (length should be the order of the ODE. For MyOde,
+    length is 2, and initial conditions are for x and v) 
+  - number of time points n (output time vector has length n with first element
+    inital time and last element final time, output state variable vectors also
+    have length n) 
+
+Technical specifications:
+
+This class should have one private field, a MyOde *, which is dynamically
+allocated and "owned" by the EulerSimulation object (i.e., EulerSimulation is
+responsible for allocating and deallocating the MyOde *, and each object
+maintains its own.) 
+
+This class has the following public member functions:
+  - Constructor which takes a MyOde (by const reference) and initializes the
+    object's private field. 
+  - A destructor
+  - A function operator, which takes a vector of doubles tspan (by reference to
+    const), a vector of doubles ics (by reference to const), and a size_t n. It
+    returns an odesoln_t, which is the following typedef, representing a time
+    vector and vector of time series for each state variable.  
+      typedef std::pair<std::vector<double>, std::vector<std::vector<double> > > odesoln_t;
+    For more on std::pair, see its documentation
+    (https://cplusplus.com/reference/utility/pair/).
+    
+In addtion, declare a friend function
+  friend void testEuler(EulerSimulation & es);
+so your test code and our test code has access to the private field of this
+class. Note: if you implement testEuler, do so in your test-step2.cpp (not in
+euler.cpp).  
+
+Also, overload the stream insertion operator for odesoln_t, such that it prints
+the result at each time step (t,x,xdot) delimited by newlines. For example, if
+the parameters to MyOde are {1,0.1,5,2,6}, and EulerSimulation is called with a
+time span of {0,1}, initial conditions {0,0.1}, and 3 time points, the output
+is: 
+
+0,0,0.1
+0.5,0.05,0.095
+1,0.0975,0.10637
+
+Meaning at time 0, x is 0 and xdot is 0.1. At time 0.5, x is 0.05 and xdot is
+0.095, and at time 1, x is 0.0975 and xdot is 0.10637. 
+
+Test the EulerSimulation class by writing a program "test-step2".
+
+When you are satisfied with your testing, add/commit/push and grade, and the
+pregrader will compare the output of your test-step2 using your MyOde and
+EulerSimulation and our implementations.
+
+You may notice that we would ideally like EulerSimulation to be general in what
+kind of ODE it integrates. Or we might like to be able to choose different
+integration methods. After you read and understand how to use inheritance,
+think back on how you might design a more general version of this assignment!
+
+Step 3
+======================================================================
+
+Write a program "num_sim", which parses input and puts together the
+functionality you have already written. 
+
+This program takes four command line arguments: parameters to the ODE, time
+span, initial conditions, and number of points in the following format: 
+
+m,c,k,a,om ti,tf x0,v0 n
+
+where
+m: mass
+c: damping coefficient
+k: spring constant
+a: amplitude of input force
+om: frequency of input force
+ti: initial time
+tf: final time
+x0: initial position
+v0: initial velocity
+n: number of points
+
+This program should parse the inputs, then use your MyOde and EulerSimulation
+classes to perform a numerical simulation, and print the output in the format
+described by the stream insertion operator for odesoln_t. 
+
+For example, if this program were called like
+
+./num_sim 1,.1,5,2,6 0,1 .5,0 3
+
+The output would be
+
+0,0.5,0
+0.5,0.5,-1.25
+1,-0.125,-2.29638
+
+A note on string to floating point number conversion: we consider a string a
+valid double if it is convertible with strtod, and the whole string can be
+converted to a number. Note from the man page entry that leading whitespace is
+permitted. 
+
+When you are satisfied with your testing, add/commit/push and grade, and the
+pregrader will compare your num_sim with ours. 
+
+Testing
+===========================================================================
+
+We will provide a "pregrader" you can use to run your own test cases to make
+sure your code's output agrees with the output of our implementation. 
+
+To test steps 1 and 2, write any test code you like in your test-step1.cpp and
+test-step2.cpp files.
+
+To test step 3, create a file named testcases.txt, and write your test cases in
+this format:
+
+#error
+num_sim 1,.1,5,2,6 0,1 .5,0
+
+#success
+num_sim 1,.1,5,2,6 0,1 .5,0 3
+
+That is, a section with the #error header containing error test cases, which
+should give an appropriate error message and exit with a failure status.
+
+The next section has a #success header and is followed by test cases that
+should have a success status. For these the pregrader will check that your
+results match ours. 
+
+Before the deadline, when you do 'grade', the pregrader will run your test
+cases and compare your results to a reference implementation. You may write as
+many test cases as you like, but you are limited to 10 seconds of compute time
+by the pregrader. 
+
+Code Quality
+===========================================================================
+
+Your code will also be graded for its quality. Your grader will assess the
+quality of the abstraction, naming, formatting, OOP, and documentation of your
+code. For this assignment, this means to think about: 
+  - Abstraction: function length and design, .h/.cpp file separation
+  - Naming: class, variable, function names
+  - Formatting: standard (you can do this automatically by saving in Emacs;
+    otherwise, you should run clang-format on your source code file)
+  - OOP: you have two classes, and their relationships, fields, and methods
+    make sense, using access specifiers and const appropriately 
+  - Documentation: comment describing each of the functions you write, as well
+    as a comment if you write anything complex or unusual.  
+
+Reminders
+===========================================================================
+
+Your code will be graded ONCE after a hard deadline. You may run 'grade' as
+many times as you like to see the pregrader output, but the last commit after
+which you run grade before the deadline will be your submission. However, you
+should still be testing your code before you submit.  
+
+This is an INDIVIDUAL assignment. You are only allowed to communicate regarding
+this assignment with an instructor or TA. You are permitted domain knowledge
+resources on Euler's method, such as its Wikipedia page. If you have any
+questions about what resources are permitted, ask the instructor for
+clarification. 
