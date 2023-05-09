@@ -1,0 +1,17 @@
+#error
+
+printStats roster.txt
+printRoster invalid2.txt
+printRoster invalid7.txt
+printRoster invalid6.txt
+printStats roster.txt game3.txt
+#success
+printRoster roster.txt
+printStats simple_roster.txt simple_game1.txt
+printRoster invalid3.txt
+printRoster invalid5.txt
+printRoster invalid1.txt
+printRoster invalid5.txt
+printRoster invalid4.txt
+
+printRoster invalid8.txt

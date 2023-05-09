@@ -1,0 +1,25 @@
+For this assignment, you will write test cases for your next assignment. As
+usual, the instructions for the next assignment are in next-README.
+
+For this assignment, we have created compiled binaries (in
+/usr/local/intro_prog/rot_matrix/ where rotateMatrix is correct, and the
+numbered ones are each broken in some way). 
+
+As with the testing assignment for match5, you will write a file called
+tests.txt, which will list the command line arguments you want to use to run the
+programs. However, unlike the previous assignment, you will also want to create
+a wide variety of input files. You can name them anything you want, as long as
+you save them in the current (47_tests_rot_matrix) directory, and submit them
+along with tests.txt. 
+
+For example, if you would run the program as:
+
+./rotateMatrix input.txt
+
+then that line of tests.txt would say:
+
+input.txt
+
+As usual, we have provided run_all.sh.
+
+Hint: think about various error cases that the programmer might have forgotten!
