@@ -1,0 +1,15 @@
+Grading at 01/23/2023:19:04:13.630511
+For commit ID 980becec7e0de1cfa4ccbba4d33af3610b93817c
+Grading at Mon Jan 23 02:04:13 PM EST 2023
+Attempting to compile rectangle.c
+Tring to run rectangle
+Your file matched the expected output
+removing your main() and replacing it with out own to run more tests...
+#################################################
+testcase1:
+testcase1 passed
+#################################################
+testcase2:
+testcase2 passed
+
+Overall Grade: A
