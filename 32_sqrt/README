@@ -1,0 +1,28 @@
+For this assignment, you will write a function (and code to test it) that
+computes the square root of an integer and indicates whether the input is a
+perfect square. Open sqrt.c and you will see the function
+
+int square_root(int x, int * perfect);
+
+If x is a perfect square, the function should update the box "perfect" points
+to to be 1 and return the square root of x. 
+
+If x is not a perfect square, the function should update the box "perfect"
+points to to be 0 and return the largest integer less than the exact square
+root of x. (Let us say the correct behavior if x is negative is for square_root
+to return -1.) 
+
+For example, if the argument for x is 4, this function would update the box
+perfect points to to be 1 and return 2. If the argument for x is 5, this
+function would update the box perfect points to to be 0 and return 2.
+
+You are given several test cases in main, along with two test cases you should
+write. We provide a helper function for testing that calls square_root and
+prints the result. To help you with the pointer operations, we recommend
+drawing a careful picture of test_one calling square_root.
+
+We provide a Makefile you can use to compile your program and a file
+expected_ans.txt that contains the expected output of sqrt.c once you have
+added the two test cases.
+
+You will submit sqrt.c for this assignment.

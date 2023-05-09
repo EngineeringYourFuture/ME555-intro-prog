@@ -1,0 +1,41 @@
+Grading at 02/03/2023:19:47:18.373218
+For commit ID 575bede218f7638bc2239225932a3cfe53179242
+Grading at Fri Feb  3 02:47:17 PM EST 2023
+Attempting to compile sqrt.c
+----------------------------------------
+Trying to run your code as written...
+Your file matched the expected output
+----------------------------------------
+Removing your main() and replacing it with our own to run more tests...
+----------------------------------------
+Test case 1
+Correct
+----------------------------------------
+Test case 2
+Correct
+----------------------------------------
+Test case 3
+Correct
+----------------------------------------
+Test case 4
+Correct
+----------------------------------------
+Test case 5
+Correct
+----------------------------------------
+Test case 6
+Correct
+----------------------------------------
+Test case 7
+Correct
+----------------------------------------
+Test case 8
+Correct
+----------------------------------------
+Test case 9
+Correct
+----------------------------------------
+Test case 10
+Correct
+
+Overall Grade: A

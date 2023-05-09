@@ -1,0 +1,7 @@
+sqrt(4) is 2, perfect square
+sqrt(5) is 2, NOT perfect square
+sqrt(0) is 0, perfect square
+sqrt(-1) is -1, NOT perfect square
+sqrt(-4) is -1, NOT perfect square
+sqrt(2147395600) is 46340, perfect square
+sqrt(2147395599) is 46339, NOT perfect square
