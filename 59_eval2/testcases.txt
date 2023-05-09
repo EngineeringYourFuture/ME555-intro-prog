@@ -1,0 +1,15 @@
+#error
+story-step1 broken1.txt
+story-step2 broken2.txt
+story-step3 trickywords.txt broken1.txt
+story-step3 broken2.txt trickystory.txt
+story-step4 words.txt brokenstory1.txt
+story-step4 words.txt
+story-step4 story.txt words.txt
+story-step4 words.txt brokenstory2.txt
+#success
+story-step1 mystory1.txt
+story-step2 words.txt
+story-step3 words.txt story.txt
+story-step3 trickywords.txt trickystory.txt
+story-step4 trickywords.txt trickystory2.txt

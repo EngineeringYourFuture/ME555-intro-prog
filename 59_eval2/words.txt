@@ -1,0 +1,7 @@
+animal:dragon
+animal:walrus
+animal:narwhal
+place:cave
+place:city
+place:tree
+adjective:peculiar
